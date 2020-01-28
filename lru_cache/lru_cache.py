@@ -12,7 +12,6 @@ class LRUCache:
 
     def __init__(self, limit=10):
         self.limit = limit
-        self.node_count = 0
         self.list = DoublyLinkedList()
         self.table = {}
 
@@ -48,10 +47,8 @@ class LRUCache:
             self.table[key] = self.list.head
             self.list.head.value = (key, value)
         except:
-            self.node_count += 1
             self.list.add_to_head((key, value))
             self.table[key] = self.list.head
-        if self.node_count > self.limit:
+        if len(self.list) > self.limit:
             del self.table[self.list.tail.value[0]]
             self.list.remove_from_tail()
-            self.node_count -= 1
