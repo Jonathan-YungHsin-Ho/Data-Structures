@@ -46,10 +46,10 @@ class LRUCache:
         try:
             self.list.move_to_front(self.table[key])
             self.table[key] = self.list.head
-            self.list.head.value = [key, value]
+            self.list.head.value = (key, value)
         except:
             self.node_count += 1
-            self.list.add_to_head([key, value])
+            self.list.add_to_head((key, value))
             self.table[key] = self.list.head
         if self.node_count > self.limit:
             del self.table[self.list.tail.value[0]]
