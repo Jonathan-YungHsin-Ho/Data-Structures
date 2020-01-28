@@ -25,11 +25,11 @@ class LRUCache:
     """
 
     def get(self, key):
-        if key not in self.table.keys():
-            return None
-        else:
+        try:
             self.list.move_to_front(self.table[key])
             return self.list.head.value
+        except:
+            return None
 
     """
     Adds the given key-value pair to the cache. The newly-
