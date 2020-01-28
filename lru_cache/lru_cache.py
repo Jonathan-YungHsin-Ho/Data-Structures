@@ -24,10 +24,10 @@ class LRUCache:
     """
 
     def get(self, key):
-        try:
+        if key in self.table:
             self.list.move_to_front(self.table[key])
             return self.list.head.value[1]
-        except:
+        else:
             return None
 
     """
@@ -42,11 +42,11 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        try:
+        if key in self.table:
             self.list.move_to_front(self.table[key])
             self.table[key] = self.list.head
             self.list.head.value = (key, value)
-        except:
+        else:
             self.list.add_to_head((key, value))
             self.table[key] = self.list.head
         if len(self.list) > self.limit:
