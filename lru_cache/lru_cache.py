@@ -27,7 +27,7 @@ class LRUCache:
     def get(self, key):
         try:
             self.list.move_to_front(self.table[key])
-            return self.list.head.value
+            return self.list.head.value[1]
         except:
             return None
 
@@ -43,16 +43,15 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        if key in self.table.keys():
+        try:
             self.list.move_to_front(self.table[key])
             self.table[key] = self.list.head
-            self.list.head.value = value
-        else:
+            self.list.head.value = [key, value]
+        except:
             self.node_count += 1
-            self.list.add_to_head(value)
+            self.list.add_to_head([key, value])
             self.table[key] = self.list.head
         if self.node_count > self.limit:
-            self.table = {key: val for key,
-                          val in self.table.items() if val != self.list.tail}
+            del self.table[self.list.tail.value[0]]
             self.list.remove_from_tail()
             self.node_count -= 1
