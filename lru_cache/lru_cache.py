@@ -44,11 +44,11 @@ class LRUCache:
     def set(self, key, value):
         if key in self.table:
             self.list.move_to_front(self.table[key])
-            self.table[key] = self.list.head
             self.list.head.value = (key, value)
         else:
             self.list.add_to_head((key, value))
-            self.table[key] = self.list.head
+        self.table[key] = self.list.head
+
         if len(self.list) > self.limit:
             del self.table[self.list.tail.value[0]]
             self.list.remove_from_tail()
