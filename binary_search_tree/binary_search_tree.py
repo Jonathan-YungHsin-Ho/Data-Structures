@@ -57,26 +57,26 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        queue = Queue()
-        queue.enqueue(node)
-        while queue.len() > 0:
-            node_to_dequeue = queue.storage.head.value
+        to_print = Queue()
+        to_print.enqueue(node)
+        while to_print.len() > 0:
+            node_to_dequeue = to_print.storage.head.value
             print(node_to_dequeue.value)
-            queue.dequeue()
-            node_to_dequeue.left and queue.enqueue(node_to_dequeue.left)
-            node_to_dequeue.right and queue.enqueue(node_to_dequeue.right)
+            to_print.dequeue()
+            node_to_dequeue.left and to_print.enqueue(node_to_dequeue.left)
+            node_to_dequeue.right and to_print.enqueue(node_to_dequeue.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        stack = Stack()
-        stack.push(node)
-        while stack.len() > 0:
-            node_to_pop = stack.storage.tail.value
+        to_print = Stack()
+        to_print.push(node)
+        while to_print.len() > 0:
+            node_to_pop = to_print.storage.tail.value
             print(node_to_pop.value)
-            stack.pop()
-            node_to_pop.right and stack.push(node_to_pop.right)
-            node_to_pop.left and stack.push(node_to_pop.left)
+            to_print.pop()
+            node_to_pop.right and to_print.push(node_to_pop.right)
+            node_to_pop.left and to_print.push(node_to_pop.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
