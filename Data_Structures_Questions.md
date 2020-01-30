@@ -18,9 +18,15 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `insert`?
 
+> The runtime complexity of `insert` is `O (log n)`. If the BST were poorly formed, if it were to approximate a singly-linked list, then there would be a worst case runtime complexity of `O(n)` if the whole tree had to be traversed to insert a new leaf.
+
 2. What is the runtime complexity of `contains`?
 
+> The runtime complexity of `contains` is `O(log n)`. If the BST were poorly formed, if it were to approximate a singly-linked list, then there would be a worst case runtime complexity of `O(n)` if the whole tree had to be traversed to find a target value.
+
 3. What is the runtime complexity of `get_max`?
+
+> The runtime complexity of `get_max` is `O(log n)`. If the BST were poorly formed, if it were to approximate a singly-linked list, then there would be a worst case runtime complexity of `O(n)` if the whole tree had to be traversed to find the max value.
 
 ## Heap
 
