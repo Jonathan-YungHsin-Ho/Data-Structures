@@ -1,6 +1,3 @@
-import math
-
-
 class Heap:
     def __init__(self):
         self.storage = []
@@ -10,15 +7,10 @@ class Heap:
         self._bubble_up(self.get_size() - 1)
 
     def delete(self):
-        if self.get_size() == 1:
-            return self.storage.pop()
-        else:
-            last_index = self.get_size() - 1
-            self.storage[0], self.storage[last_index] \
-                = self.storage[last_index], self.storage[0]
-            return_value = self.storage.pop()
-            self._sift_down(0)
-            return return_value
+        self.storage[0], self.storage[-1] = self.storage[-1], self.storage[0]
+        return_value = self.storage.pop()
+        self._sift_down(0)
+        return return_value
 
     def get_max(self):
         return self.storage[0]
@@ -27,7 +19,7 @@ class Heap:
         return len(self.storage)
 
     def _bubble_up(self, index):
-        parent_index = math.ceil((index - 2) / 2)
+        parent_index = (index - 1) // 2
 
         if index == 0:
             return
@@ -41,9 +33,12 @@ class Heap:
         index_left_child = index * 2 + 1
         index_right_child = index * 2 + 2
 
+        # Return if no left child
+        # When there's no left child, there would be no right child either
         if index_left_child >= self.get_size():
             return
 
+        # Return if value is larger than its children's values
         elif self.storage[index] >= self.storage[index_left_child] \
                 and self.storage[index] >= self.storage[index_right_child]:
             return
@@ -53,8 +48,7 @@ class Heap:
                 switch_index = index_left_child
             else:
                 switch_index = index_left_child \
-                    if self.storage[index_left_child] >= self.storage[index_right_child] \
-                    else index_right_child
+                    if self.storage[index_left_child] >= self.storage[index_right_child] else index_right_child
 
             self.storage[index], self.storage[switch_index] \
                 = self.storage[switch_index], self.storage[index]
