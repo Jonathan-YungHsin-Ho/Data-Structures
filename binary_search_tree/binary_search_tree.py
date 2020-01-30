@@ -35,7 +35,8 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        return self.right.get_max() if self.right else self.value
+        # return self.right.get_max() if self.right else self.value
+        return self.value if not self.right else self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -60,11 +61,10 @@ class BinarySearchTree:
         to_print = Queue()
         to_print.enqueue(node)
         while to_print.len() > 0:
-            node_to_dequeue = to_print.storage.head.value
-            print(node_to_dequeue.value)
-            to_print.dequeue()
-            node_to_dequeue.left and to_print.enqueue(node_to_dequeue.left)
-            node_to_dequeue.right and to_print.enqueue(node_to_dequeue.right)
+            dequeued_node = to_print.dequeue()
+            print(dequeued_node.value)
+            dequeued_node.left and to_print.enqueue(dequeued_node.left)
+            dequeued_node.right and to_print.enqueue(dequeued_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -72,11 +72,10 @@ class BinarySearchTree:
         to_print = Stack()
         to_print.push(node)
         while to_print.len() > 0:
-            node_to_pop = to_print.storage.tail.value
-            print(node_to_pop.value)
-            to_print.pop()
-            node_to_pop.right and to_print.push(node_to_pop.right)
-            node_to_pop.left and to_print.push(node_to_pop.left)
+            popped_node = to_print.pop()
+            print(popped_node.value)
+            popped_node.right and to_print.push(popped_node.right)
+            popped_node.left and to_print.push(popped_node.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
@@ -89,6 +88,3 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
-
-
-BinarySearchTree(3).bft_print(BinarySearchTree(3))
