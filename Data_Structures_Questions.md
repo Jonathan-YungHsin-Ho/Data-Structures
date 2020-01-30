@@ -32,13 +32,23 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `_bubble_up`?
 
+> The runtime complexity of `_bubble_up` is `O(log n)`.
+
 2. What is the runtime complexity of `_sift_down`?
+
+> The runtime complexity of `_sift_down` is `O(log n)`.
 
 3. What is the runtime complexity of `insert`?
 
+> The runtime complexity of `insert` is `O(log n)`.
+
 4. What is the runtime complexity of `delete`?
 
+> The runtime complexity of `delete` is `O(log n)`.
+
 5. What is the runtime complexity of `get_max`?
+
+> The runtime complexity of `get_max` is `O(1)`.
 
 ## Doubly Linked List
 
